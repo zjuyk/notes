@@ -1,19 +1,12 @@
-偶然发现艾老师的博客页面非常简洁美观，再加上 **Hexo** 的性能着实堪忧，索性就来体验一下 **Hugo** ，下面记录一下搭建过程方便新入坑的人查看顺便做个备份。
+偶然发现艾老师的博客页面非常简洁美观，再加上 **Hexo** 的性能着实堪忧，索性就来体验一下 **Hugo** 。
 
 ### 1 安装
 
 - Hugo
-- [Theme：Zozo](https://github.com/zhoukai0620/hugo-theme-zozo)
-
-其他依赖：
-
-- Git
-- Go
-- Pygments（语法高亮，可选）
+- Theme：[Zozo](https://github.com/varkai/hugo-theme-zozo)
 
 ```bash
-$ sudo pacman -S hugo go
-$ sudo pip install pygments
+$ sudo pacman -S hugo
 ```
 
 ### 2 配置
@@ -29,8 +22,7 @@ $ hugo new site <repo_path>
 添加主题
 
 ```bash
-$ cd $repo_path/themes
-$ git clone https://github.com/zhoukai0620/hugo-theme-zozo
+$ git submodule add https://github.com/varkai/hugo-theme-zozo
 ```
 
 从主题的 **exampleSite** 文件夹复制配置文件 **config.toml** 到站点根目录，基本配置如下
@@ -110,51 +102,15 @@ disqusShortname = ""                 # your discuss shortname
 $ hugo server
 ```
 
-#### 2.2 Github配置
+#### 2.2 GitLab 配置
 
-新建两个仓库，其中一个为`username.github.io`用于博客展示，另外一个取名随意，暂记A，用于存放整个站点文件，然后只勾选 **repo** 生成新 **token** ，注意这个只能查看一次，可以先保存下来。
-
-#### 2.3 链接仓库
-
-到 **Travis CI** 绑定你的 **github** 账户并激活仓库A，填入 **token** 
-
-#### 2.4 本地文件配置
-
-新建 **.travis.yml** 放在站点根目录
-
-```yml
-sudo: false
-language: go
-git:
-        depth: 1
-install: go get -v github.com/gohugoio/hugo
-script: hugo
-deploy:
-        provider: pages
-        skip_cleanup: true
-        github_token: <token>
-        on:
-                branch: master
-        local_dir: public
-        repo: username/username.github.io
-        fqdn: <custom-domain-if-needed>
-        target_branch: master
-        email: <github-email>
-        name: <github-username>
-```
-
-#### 2.5 上传
-
-将本地站点文件夹 **push** 到仓库 A
+新建一个名为 username.gitlab.io 的仓库
 
 ```bash
-$ cd <repo_path>
+$ cd username.gitlab.io
 $ git init
-$ git remote add origin <仓库A的URL>
-$ git add ./
+$ git remote add origin <repo_url>
+$ git add .
 $ git commit -m "upload blog"
 $ git push -u origin master
 ```
-
-
-**Hint:** 由于 **Travis CI** 对于 **Hugo** 来说太慢了，干脆两个仓库都自己管理
