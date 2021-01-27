@@ -13,7 +13,7 @@ httpserver 就可以预览。同时我这是发布在 github pages 上的，其�
 - 拥有足够的 API 
 
 	实际上我只需要代码高亮和基本的 md 渲染这两个功能，后者包括扩充的 mermaid 和 latex 渲染，这两点 docsify 都支持。
-利用 prim 可以轻松渲染我喜欢的 onedark 配色，虽然又需要引入 js（知道不好，但一把梭属实香）
+利用 prism 可以轻松渲染我喜欢的 onedark 配色，虽然又需要引入 js（知道不好，但一把梭属实香）
 
 - 支持中文搜索
 
