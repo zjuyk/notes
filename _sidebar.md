@@ -11,7 +11,8 @@
 	* Gentoo
 	* Arch
 	* Windows
-* Others
-	* 影评
-	* 书评
-	* 随笔
+* Writing
+	* Markdown
+		* [基础用法](Writing/markdown-base.md)
+		* [进阶用法](Writing/markdown-enfore.md)
+	* Latex
