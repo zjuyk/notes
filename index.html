@@ -10,6 +10,9 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css">
   <link rel="stylesheet" href="https://unpkg.com/prism-theme-one-dark/prism-onedark.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.css">
+  <!-- Custom theme styles -->
+  <style>
+  </style>
 </head>
 <body>
   <div id="app">Loading...</div>
@@ -18,14 +21,30 @@
 		name: '千玄子的个人笔记',
 		repo: 'zjuyk/notes',
 		loadSidebar: true,
+		subMaxLevel: 6,
 		coverpage: true,
 		onlyCover: true,
-		auto2top: truei,
+		auto2top: true,
 		formatUpdated: '{MM}/{DD} {HH}:{mm}',
-		formatUpdated: function(time) {
-			return time;
-		}
+		themeable: {
+			readyTransition : true, 
+			responsiveTables: true
+		},
+		search: 'auto',
 	}
+		plugins: [
+			EditOnGithubPlugin.create(
+				'https://github.com/zjuyk/notes/',
+				null,
+				function(file) {
+					if (file.indexOf('en') === -1) {
+						return '编辑'
+					} else {
+						return 'edit on git'
+						}
+					}
+			)
+		]
   </script>
   <!-- Docsify v4 -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
@@ -36,6 +55,8 @@
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-toml.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify-copy-code"></script>
-  <script src="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <scripit src="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-edit-on-github"></script>
 </body>
 </html>
